@@ -2,14 +2,10 @@ import * as basicLightbox from 'basiclightbox';
 import { alert, defaultModules } from '@pnotify/core/dist/PNotify.js';
 import * as PNotifyMobile from '@pnotify/mobile/dist/PNotifyMobile.js';
 defaultModules.set(PNotifyMobile, {});
-import { defaults } from '@pnotify/core';
 import '@pnotify/core/dist/BrightTheme.css';
 import { Stack } from '@pnotify/core';
 import ApiService from './apiService';
 import imageCardTemplate from '../imageCards.hbs';
-
-defaults.styling = 'brighttheme';
-defaults.icons = 'brighttheme';
 
 const refs = {
     galleryContainer: document.querySelector('.gallery'),
@@ -24,9 +20,7 @@ const intersectionObserver = new IntersectionObserver(observerCallback, {
 
 const newApiServise = new ApiService();
 
-const instance = basicLightbox.create(`
-	<img src="" alt="" class="modal-image"/>
-`);
+const instance = basicLightbox.create('<img src="" alt="" class="modal-image"/>');
 
 intersectionObserver.observe(refs.anchor);
 refs.searchForm.addEventListener('submit', search);
@@ -38,7 +32,7 @@ function search(event) {
   refs.galleryContainer.innerHTML = '';
   newApiServise.resetPage();
   fetchingImg();
-}
+};
 
 function fetchingImg() {
   newApiServise.fetchImages().then(data => {
@@ -54,20 +48,21 @@ function fetchingImg() {
     }
     refs.galleryContainer.insertAdjacentHTML('beforeend', imageCardTemplate(data));
   });
-}
+};
 
 function observerCallback([entrie]) {
-  if (refs.galleryContainer.innerHTML !== '' && entrie.isIntersecting) {
-    fetchingImg();
-  }
-}
+    if (refs.galleryContainer.innerHTML !== '' && entrie.isIntersecting) {
+        fetchingImg()
+    };
+};
 
 function openModal(event) {
   if (event.target.nodeName !== 'IMG') return;
     
-  instance.show();
-  const modalImage = document.querySelector('.modal-image');
+    instance.show();
+    const modalImage = document.querySelector('.modal-image');
+    modalImage.src = event.target.dataset.source;
+    modalImage.alt = event.target.alt;
+};
 
-  modalImage.src = event.target.dataset.source;
-  modalImage.alt = event.target.alt;
-}
+
