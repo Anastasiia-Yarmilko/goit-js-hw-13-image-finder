@@ -25,6 +25,7 @@ img {
 .search-form {
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .form-control {
@@ -84,24 +85,33 @@ img {
   max-width: calc(100vw - 80px);
   padding: 0;
   margin: 0;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 20px;
+  margin-right: 20px;
   margin-bottom: 20px;
 }
 
 .stats {
   display: flex;
   justify-content: space-between;
-  padding-right: 10px;
-  padding-left: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
 }
+
 .stats-item {
   display: flex;
   align-items: center;
+  color: rgb(97, 97, 97);
 }
+
 .material-icons {
   margin-right: 5px;
 }
+
 .anchor {
   height: 4px;
+}
+
+.photo-card {
+  border-width: 1px;
+  border-color: rgb(97, 97, 97);
 }
